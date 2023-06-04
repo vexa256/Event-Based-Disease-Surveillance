@@ -73,37 +73,16 @@ export default {
             },
           ],
         },
-        {
-          title: "User Structures",
-          iconClass: "fas fas fa-user-shield fa-3x",
-          submenuClass: "ADMNISTRATIVEUNITS",
-          menuItems: [
-            {
-              label: "User Roles",
-              className: "mt-2 mb-2",
-              link: "/MgtProvinces",
-            },
-            {
-              label: "User Accounts",
-              className: "mt-2 mb-2",
-              link: "/MgtDistricts",
-            },
-            {
-              label: "Admins Accounts",
-              className: "mt-2 mb-2",
-              link: "/MgtDistricts",
-            },
-          ],
-        },
+
         {
           title: "EBS  Structures",
           iconClass: "fas fa-project-diagram fa-3x",
           submenuClass: "ADMNISTRATIVEUNITS",
           menuItems: [
             {
-              label: "CEBS",
+              label: "CEBS Structure",
               className: "mt-2 mb-2",
-              link: "/MgtProvinces",
+              link: "/StructureCebs",
             },
             {
               label: "HFEBS",
@@ -248,6 +227,17 @@ export default {
           iconClass: "fas fa-user-cog fa-3x",
           submenuClass: "ADMNISTRATIVEUNITS",
           menuItems: [
+
+            {
+              label: "User Accounts",
+              className: "mt-2 mb-2",
+              link: "/MgtDistricts",
+            },
+            {
+              label: "Admins Accounts",
+              className: "mt-2 mb-2",
+              link: "/MgtDistricts",
+            },
             {
               label: "Update Account",
               className: "mt-2 mb-2",

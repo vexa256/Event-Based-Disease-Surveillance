@@ -10,6 +10,7 @@ import MgtChvGroups from "./components/sys/Structures/MgtChvGroups.vue";
 import MgtHealthFacilities from "./components/sys/Facilities/MgtHealthFacilities.vue";
 import MgtVetFacilities from "./components/sys/Facilities/MgtVetFacilities.vue";
 import MgtEnvFacilities from "./components/sys/Facilities/MgtEnvFacilities.vue";
+import StructureCebs from "./components/EbsStructures/StructureCebs.vue";
 // import Page2 from "./components/Page2.vue";
 // import other page components...
 
@@ -23,6 +24,7 @@ const routes = [
   { path: "/MgtHealthFacilities", component: MgtHealthFacilities },
   { path: "/MgtVetFacilities", component: MgtVetFacilities },
   { path: "/MgtEnvFacilities", component: MgtEnvFacilities },
+  { path: "/StructureCebs", component: StructureCebs },
   //   { path: "/page2", component: Page2 },
   // add more routes...
 ];
