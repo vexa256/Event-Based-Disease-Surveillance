@@ -270,7 +270,7 @@ export default {
             try {
                 const {
                     data: { records },
-                } = await axios.post(`${this.SERVER_URL}FetchEbsStructures`, { EbsType: 'HFEBS' });
+                } = await axios.get(`${this.SERVER_URL}FetchCebsStructures`);
 
                 if (!Array.isArray(records) || records.length === 0)
                     throw "Invalid or empty records";

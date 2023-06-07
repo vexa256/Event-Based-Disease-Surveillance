@@ -93,9 +93,9 @@ export default {
               link: "/StructureVebs",
             },
             {
-              label: "MEBS",
+              label: "MEBS Structures",
               className: "mt-2 mb-2",
-              link: "/MgtConstituencies",
+              link: "/StructureMebs",
             },
             {
               label: "Hot Line EBS",

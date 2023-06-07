@@ -3,7 +3,7 @@
     <div class="card-body mb-3 pb-3 pe-2 bg-light shadow-lg table-responsive">
       <button type="button" data-bs-toggle="modal" data-bs-target="#ViewData"
         class="btn btn-sm float-end mt-3 btn-danger ms-2">
-        <i class="fas fa-eye"></i> View CEBs Structures
+        <i class="fas fa-eye"></i> View CEBS Structures
       </button>
     </div>
     <div class="card-body px-5 py-5 bg-light shadow-lg table-responsive">
@@ -266,7 +266,7 @@ export default {
       try {
         const {
           data: { records },
-        } = await axios.post(`${this.SERVER_URL}FetchEbsStructures`, { EbsType: 'CEBS' });
+        } = await axios.get(`${this.SERVER_URL}FetchCebsStructures`);
 
         if (!Array.isArray(records) || records.length === 0)
           throw "Invalid or empty records";

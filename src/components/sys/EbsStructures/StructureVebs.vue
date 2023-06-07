@@ -10,7 +10,7 @@
             <form method="POST" id="AddHF">
                 <Roles />
                 <SelectLevels />
-                <SelectFacilities />
+                <SelectVetFacilities />
                 <SelectDesignations />
                 <div id="MgtRoles"></div>
                 <input type="text" name="PostRoute" value="CreateEBsStructure" class="d-none" />
@@ -113,7 +113,7 @@
 
                                     <Roles />
                                     <SelectLevels />
-                                    <SelectFacilities />
+                                    <SelectVetFacilities />
                                     <SelectDesignations />
 
 
@@ -151,7 +151,7 @@
 <script>
 import Roles from './Roles.vue';
 import SelectLevels from './SelectLevels.vue';
-import SelectFacilities from './SelectFacilities.vue';
+import SelectVetFacilities from './SelectVetFacilities.vue';
 import SelectDesignations from './SelectDesignations.vue';
 
 
@@ -159,7 +159,7 @@ export default {
     components: {
         Roles,
         SelectLevels,
-        SelectFacilities,
+        SelectVetFacilities,
         SelectDesignations,
     },
     data() {
@@ -270,7 +270,7 @@ export default {
             try {
                 const {
                     data: { records },
-                } = await axios.post(`${this.SERVER_URL}FetchEbsStructures`, { EbsType: 'VEBS' });
+                } = await axios.get(`${this.SERVER_URL}FetchVebsStructures`);
 
                 if (!Array.isArray(records) || records.length === 0)
                     throw "Invalid or empty records";

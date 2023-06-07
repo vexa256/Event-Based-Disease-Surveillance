@@ -15,6 +15,7 @@ import StructureCebs from "./components/sys/EbsStructures/StructureCebs.vue";
 import Designations from "./components/sys/EbsStructures/Designations.vue";
 import StructureFhebs from "./components/sys/EbsStructures/StructureFhebs.vue";
 import StructureVebs from "./components/sys/EbsStructures/StructureVebs.vue";
+import StructureMebs from "./components/sys/EbsStructures/StructureMebs.vue";
 // import Page2 from "./components/Page2.vue";
 // import other page components...
 
@@ -32,6 +33,7 @@ const routes = [
   { path: "/Designations", component: Designations },
   { path: "/StructureFhebs", component: StructureFhebs },
   { path: "/StructureVebs", component: StructureVebs },
+  { path: "/StructureMebs", component: StructureMebs },
   //   { path: "/page2", component: Page2 },
   // add more routes...
 ];
