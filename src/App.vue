@@ -32,7 +32,7 @@ import Footer from './components/ui/footer/footer.vue'
                 <div id="MYCONTENT">
 
 
-                  <router-view></router-view>
+                                <router-view :key="$route.fullPath"></router-view>
 
 
                 </div>

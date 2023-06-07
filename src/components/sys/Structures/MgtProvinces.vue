@@ -17,7 +17,7 @@
         <input type="text" name="PostRoute" value="MassInsert" class="d-none" />
         <input type="text" name="TableName" value="provinces" class="d-none" />
         <input type="text" name="created_at" value="" class="d-none" />
-        <input type="text" name="DistrictID" class="randomid d-none" />
+                  <input type="text" name="ProvinceID" class="randomid d-none" />
       </form>
     </div>
     <!-- mODAL VEW DATA  -->

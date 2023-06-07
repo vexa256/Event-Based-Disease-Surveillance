@@ -79,20 +79,18 @@ export default {
           iconClass: "fas fa-project-diagram fa-3x",
           submenuClass: "ADMNISTRATIVEUNITS",
           menuItems: [
+            { label: "Designations", className: "mt-2 mb-2", link: "/Designations", },
+
+            { label: "CEBS Structures", className: "mt-2 mb-2", link: "/StructureCebs", },
             {
-              label: "CEBS Structure",
+              label: "HFEBS Structures",
               className: "mt-2 mb-2",
-              link: "/StructureCebs",
+              link: "/StructureFhebs",
             },
             {
-              label: "HFEBS",
+              label: "VEBS Structures",
               className: "mt-2 mb-2",
-              link: "/MgtDistricts",
-            },
-            {
-              label: "VEBS",
-              className: "mt-2 mb-2",
-              link: "/MgtConstituencies",
+              link: "/StructureVebs",
             },
             {
               label: "MEBS",

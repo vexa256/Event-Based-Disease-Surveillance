@@ -191,14 +191,17 @@ axios.interceptors.response.use(
 );
 // Set Random Number for form IDs
 window.setRandomId = () => {
-  const randomIdElement = document.querySelector(".randomid");
-  if (randomIdElement) {
+  const randomIdElements = document.querySelectorAll(".randomid");
+  if (randomIdElements.length > 0) {
     setInterval(() => {
-      const randomId = Math.floor(Math.random() * 900000000) + 100000000;
-      randomIdElement.value = randomId;
+      randomIdElements.forEach(randomIdElement => {
+        const randomId = Math.floor(Math.random() * 900000000) + 100000000;
+        randomIdElement.value = randomId;
+      });
     }, 500);
   }
 };
+
 
 // CREATE TIMESTAMP
 // Global function to set the value of 'created_at' elements
@@ -210,6 +213,9 @@ window.setCreatedAtValue = () => {
     elements[i].value = timestamp;
   }
 };
+
+setInterval(setRandomId, 2000);
+
 
 // Post all form elements to the database
 
@@ -611,9 +617,24 @@ window.FetchSelect = function (
           option.text = province[DisplayColumn]; // using square brackets to access property
           provinceSelect.appendChild(option);
         });
+
+        removeDuplicates(provinceSelect);
       }
     } catch (error) {
       console.error("Failed to fetch provinces:", error);
+    }
+  }
+
+  function removeDuplicates(selectElement) {
+    let optionValues = new Set();
+    for (let i = 0; i < selectElement.options.length; i++) {
+      const optionValue = selectElement.options[i].value;
+      if (optionValues.has(optionValue)) {
+        selectElement.remove(i);
+        i--;  // Adjust index because an option was removed
+      } else {
+        optionValues.add(optionValue);
+      }
     }
   }
 
@@ -624,7 +645,8 @@ window.ClassBasedFetchSelect = function (
   elementClass,
   server_path,
   DisplayColumn,
-  ValueColumn
+  ValueColumn,
+  ExtraOption = null
 ) {
   const elements = document.querySelectorAll("." + elementClass);
 
@@ -638,12 +660,21 @@ window.ClassBasedFetchSelect = function (
         const records = response.data.records;
 
         elements.forEach((element) => {
+          if (ExtraOption && !element.innerHTML.includes(ExtraOption)) {
+            element.insertAdjacentHTML('afterbegin', ExtraOption);
+          }
+
           records.forEach(function (record) {
+            const optionValue = record[ValueColumn];
+            const optionText = record[DisplayColumn];
+
             const option = document.createElement("option");
-            option.value = record[ValueColumn]; // using square brackets to access property
-            option.text = record[DisplayColumn]; // using square brackets to access property
+            option.value = optionValue;
+            option.text = optionText;
             element.appendChild(option);
           });
+          
+          removeDuplicates(element);
         });
       }
     } catch (error) {
@@ -651,8 +682,28 @@ window.ClassBasedFetchSelect = function (
     }
   }
 
+  function removeDuplicates(selectElement) {
+    let optionValues = new Set();
+    for (let i = 0; i < selectElement.options.length; i++) {
+      const optionValue = selectElement.options[i].value;
+      if (optionValues.has(optionValue)) {
+        selectElement.remove(i);
+        i--;  // Adjust index because an option was removed
+      } else {
+        optionValues.add(optionValue);
+      }
+    }
+  }
+
   fetchData();
 };
+
+
+
+
+
+
+
 
 // Remove elements from display
 
