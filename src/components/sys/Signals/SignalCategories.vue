@@ -3,31 +3,28 @@
     <div class="card-body mb-3 pb-3 pe-2 bg-light shadow-lg table-responsive">
       <button type="button" data-bs-toggle="modal" data-bs-target="#ViewData"
         class="btn btn-sm float-end mt-3 btn-danger ms-2">
-        <i class="fas fa-eye"></i> View CEBS Structures
+        <i class="fas fa-eye"></i> View Signal Categories
       </button>
     </div>
     <div class="card-body px-5 py-5 bg-light shadow-lg table-responsive">
-      <form method="POST" id="AddHF">
-        <Roles />
-        <SelectLevels />
-        <SelectFacilities />
-        <SelectDesignations />
-        <div id="MgtRoles"></div>
-        <input type="text" name="PostRoute" value="CreateEBsStructure" class="d-none" />
-        <input type="text" name="TableName" value="ebs_structures" class="d-none" />
+      <form method="POST" id="AddSignalCategory">
+        <div id="MgtProvinces"></div>
+
+        <input type="text" name="PostRoute" value="MassInsert" class="d-none" />
+        <input type="text" name="TableName" value="ebs_signal_categories" class="d-none" />
         <input type="text" name="created_at" value="" class="d-none" />
-        <input type="text" value="CEBS" name="EbsType" class=" d-none" />
-        <input type="text" value="" name="UserID" class="randomid d-none" />
-        <input type="text" name="RoleID" class="randomid d-none" />
+        <input type="text" name="EbsSignalCategoryID" class="randomid d-none" />
       </form>
     </div>
-    <div class="modal fade" id="ViewData" aria-labelledby="ViewDataLabel" aria-hidden="true">
+    <!-- mODAL VEW DATA  -->
+
+    <div class="modal fade" id="ViewData" tabindex="-1" aria-labelledby="ViewDataLabel" aria-hidden="true">
       <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
           <div class="modal-header shadow-lg">
             <div class="col-12">
               <input type="text" class="form-control float-end mt-4" v-model="searchTerm"
-                placeholder="Search CEBs Structures" />
+                placeholder="Search EBS Signal Categories" />
             </div>
           </div>
           <div class="modal-body">
@@ -41,7 +38,7 @@
                         :aria-controls="'collapse' + index">
                         <h5 class="mb-1 text-danger fw-bolder">
                           <i class="me-2 fas fa-circle-notch text-danger me-2"></i>
-                          {{ record[titleColumnName]  }} | {{ record[titleColumnName2]  }}
+                          {{ record[titleColumnName] }}
                         </h5>
                         <button class="btn btn-link text-secondary" type="button">
                           <i class="fas fa-chevron-down"></i>
@@ -89,6 +86,9 @@
       </div>
     </div>
 
+    <!-- mODAL VEW DATA  -->
+
+    <!-- Modal -->
     <div class="modal fade" id="UpdateProvincesModal" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -99,32 +99,13 @@
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <form action="#" id="UpdateFormData">
+          <form action="#" id="ThisUpdateData">
             <div class="modal-body">
               <div class="container-fluid">
                 <div id="UpdateProvinceForm">
-
-
-                  <!-- form data -->
-
-                  <Roles />
-                  <SelectLevels />
-                  <SelectFacilities />
-                  <SelectDesignations />
-
-
-
-                  <input type="text" name="PostRoute" value="UpdateEBsStructure" class="d-none" />
-                  <input type="text" name="TableName" value="ebs_structures" class="d-none" />
+                  <input type="text" name="PostRoute" value="MassUpdate" class="d-none" />
+                  <input type="text" name="TableName" value="provinces" class="d-none" />
                   <input type="text" class="UpdateRecordID d-none" name="id" value="" />
-                  <!-- <input type="text" name="created_at" value="" class="d-none" />
-          <input type="text" value="CEBS" name="EbsType" class=" d-none" />
-          <input type="text" value="" name="UserID" class="randomid d-none" />
-          <input type="text" name="RoleID" class="randomid d-none" /> -->
-
-
-
-                  <!-- form data -->
                   <div id="UpdateModalContent"></div>
                 </div>
               </div>
@@ -133,7 +114,7 @@
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Close
               </button>
-              <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">
+              <button data-bs-dismiss="modal" type="submit" class="btn btn-primary">
                 Save Changes
               </button>
             </div>
@@ -145,94 +126,45 @@
 </template>
   
 <script>
-import Roles from './Roles.vue';
-import SelectLevels from './SelectLevels.vue';
-import SelectFacilities from './SelectFacilities.vue';
-import SelectDesignations from './SelectDesignations.vue';
-
+import axios from "axios";
+import Select2 from "select2";
 
 export default {
-  components: {
-    Roles,
-    SelectLevels,
-    SelectFacilities,
-    SelectDesignations,
-  },
   data() {
     return {
-      provinces: [],
-      provinceId: null,
       searchTerm: "",
-      tableName: "ebs_structures",
-      excludedColumns: [
-        "created_at",
-        "updated_at",
-        "Role",
-        "RoleID",
-        "EbsType",
-        "EbsType",
-        "OfficialDesignation",
-        "AdministrativeLevel",
-        "EscalatesToRoleID",
-        "FacilityID",
-        "ReportsToLevel",
-        "ChvGroupID",
-        "UserID",
-
-      ],
+      provinces: [],
+      EbsSignalCategoryID: null,
+      tableName: "ebs_signal_categories",
+      excludedColumns: ["created_at", "updated_at", "EbsSignalCategoryID"],
       records: [],
-      titleColumnName: "Name",
-      titleColumnName2: "Role",
-      ignoredColumns: [
-        "created_at",
-        "updated_at",
-        "Role",
-        "RoleID",
-        "EbsType",
-        "EbsType",
-        "OfficialDesignation",
-        "AdministrativeLevel",
-        "EscalatesToRoleID",
-        "FacilityID",
-        "ReportsToLevel",
-        "ChvGroupID",
-        "UserID",
-
-      ],
+      titleColumnName: "EbsSignalCategory",
+      ignoredColumns: ["created_at", "updated_at", "EbsSignalCategoryID"],
       SERVER_URL: window.SERVER_URL,
     };
   },
   mounted() {
-    window.RemoveDisplayElements(this.ignoredColumns);
     window.fixSelectInModals();
-    window.SetMyPageTitle("Manage CEBS Workflow Structure");
+    window.RemoveDisplayElements(this.ignoredColumns);
+
+    window.SetMyPageTitle("Create and Manage Signal Categories");
 
     window.ButtonActions(".DeleteMe", "Delete", () =>
       this.fetchAndDisplayData()
     );
-
+    window.FormEngine(
+      this.tableName,
+      this.excludedColumns,
+      "#MgtProvinces",
+      12,
+      12
+    );
     setRandomId();
     setCreatedAtValue();
-    SendFormEngine("AddHF", () => this.fetchAndDisplayData());
-    SendFormEngine("UpdateFormData", () => this.fetchAndDisplayData());
+    SendFormEngine("AddSignalCategory", () => this.fetchAndDisplayData());
+    SendFormEngine("ThisUpdateData", () => this.fetchAndDisplayData());
     window.removeElementsWithXIdClass();
-
-    window.ClassBasedFetchSelect(
-      "ward-select",
-      "FetchWards",
-      "WardName",
-      "WardID"
-    );
-
-    window.PopulateHealthFacilities();
-    window.FormEngine(this.tableName, this.excludedColumns, "#MgtRoles", 12, 12);
-
-    // window.FetchSelect(
-    //   "ward-select-update",
-    //   "FetchVillages",
-    //   "VillageName",
-    //   "VillageID"
-    // );
+    // this.FetchProvinces();
   },
   async created() {
     await this.fetchAndDisplayData();
@@ -267,11 +199,13 @@ export default {
       try {
         const {
           data: { records },
-        } = await axios.get(`${this.SERVER_URL}FetchCebsStructures`);
+        } = await axios.post(`${this.SERVER_URL}FetchEbsSignalCategory`, {
+          excludedColumns: this.excludedColumns,
+        });
 
         if (!Array.isArray(records) || records.length === 0)
           throw "Invalid or empty records";
-        console.log(records);
+
         this.records = records;
       } catch (error) {
         console.error("Error fetching records:", error);
@@ -279,8 +213,6 @@ export default {
     },
   },
   computed: {
-
-
     filteredRecords() {
       if (!this.searchTerm) {
         return this.records;

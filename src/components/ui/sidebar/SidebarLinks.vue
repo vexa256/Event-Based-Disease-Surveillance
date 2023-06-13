@@ -98,52 +98,60 @@ export default {
               link: "/StructureMebs",
             },
             {
-              label: "Hot Line EBS",
+              label: "Hot Line Structures",
               className: "mt-2 mb-2",
-              link: "/MgtConstituencies",
+              link: "/StructureHotline",
             },
             {
               label: "Environment EBS",
               className: "mt-2 mb-2",
-              link: "/MgtConstituencies",
+              link: "/StructuresEebs",
             },
           ],
         },
+
         {
           title: "Set EBS  Signals",
           iconClass: "fas fa-signal fa-3x",
           submenuClass: "ADMNISTRATIVEUNITS",
           menuItems: [
             {
-              label: "CEBS",
+              label: "Signal Categories",
               className: "mt-2 mb-2",
-              link: "/MgtProvinces",
+              link: "/SignalCategories",
             },
             {
-              label: "HFEBS",
+              label: "CEBS Signals",
               className: "mt-2 mb-2",
-              link: "/MgtDistricts",
+              link: "/CebsSignals",
             },
+
             {
-              label: "VEBS",
+              label: "HFEBS Signals",
               className: "mt-2 mb-2",
-              link: "/MgtConstituencies",
+              link: "/HfebsSignals",
             },
+
             {
-              label: "MEBS",
+              label: "MEBS Signals",
               className: "mt-2 mb-2",
-              link: "/MgtConstituencies",
+              link: "/MebsSignals",
             },
+
+
             {
-              label: "Hot Line EBS",
+              label: "EEBS Signals",
               className: "mt-2 mb-2",
-              link: "/MgtConstituencies",
+              link: "/EebsSignals",
             },
+
+
             {
-              label: "Environment EBS",
+              label: "Hotline Signals",
               className: "mt-2 mb-2",
-              link: "/MgtConstituencies",
+              link: "/HotlineSignals",
             },
+
           ],
         },
         {

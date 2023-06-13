@@ -16,6 +16,21 @@ import Designations from "./components/sys/EbsStructures/Designations.vue";
 import StructureFhebs from "./components/sys/EbsStructures/StructureFhebs.vue";
 import StructureVebs from "./components/sys/EbsStructures/StructureVebs.vue";
 import StructureMebs from "./components/sys/EbsStructures/StructureMebs.vue";
+import StructureHotline from "./components/sys/EbsStructures/StructureHotline.vue";
+import StructuresEebs from "./components/sys/EbsStructures/StructuresEebs.vue";
+import SignalCategories from "./components/sys/Signals/SignalCategories.vue";
+import CebsSignals from "./components/sys/Signals/CebsSignals.vue";
+import HfebsSignals from "./components/sys/Signals/HfebsSignals.vue";
+import ViewCebsSignals from "./components/sys/Signals/ViewCebsSignals.vue";
+import ViewHfebsSignals from "./components/sys/Signals/ViewHfebsSignals.vue";
+import ViewMebsSignals from "./components/sys/Signals/ViewMebsSignals.vue";
+import ViewEebsSignals from "./components/sys/Signals/ViewEebsSignals.vue";
+import MebsSignals from "./components/sys/Signals/MebsSignals.vue";
+import EebsSignals from "./components/sys/Signals/EebsSignals.vue";
+// import EebsSignals from "./components/sys/Signals/EebsSignals.vue";
+import HotlineSignals from "./components/sys/Signals/HotlineSignals.vue";
+import ViewHotline from "./components/sys/Signals/ViewHotline.vue";
+// import HfebsSignals from "./components/sys/Signals/HfebsSignals.vue";
 // import Page2 from "./components/Page2.vue";
 // import other page components...
 
@@ -34,6 +49,21 @@ const routes = [
   { path: "/StructureFhebs", component: StructureFhebs },
   { path: "/StructureVebs", component: StructureVebs },
   { path: "/StructureMebs", component: StructureMebs },
+  { path: "/StructureHotline", component: StructureHotline },
+  { path: "/StructuresEebs", component: StructuresEebs },
+  { path: "/CebsSignals", component: CebsSignals },
+  { path: "/HfebsSignals", component: HfebsSignals },
+  { path: "/SignalCategories", component: SignalCategories },
+  { path: "/ViewCebsSignals", component: ViewCebsSignals },
+  { path: "/ViewHfebsSignals", component: ViewHfebsSignals },
+  { path: "/ViewHfebsSignals", component: ViewHfebsSignals },
+  { path: "/ViewMebsSignals", component: ViewMebsSignals },
+  { path: "/MebsSignals", component: MebsSignals },
+  { path: "/EebsSignals", component: EebsSignals },
+  { path: "/ViewEebsSignals", component: ViewEebsSignals },
+  { path: "/HotlineSignals", component: HotlineSignals },
+  { path: "/ViewHotline", component: ViewHotline },
+  // { path: "/HfebsSignals", component: HfebsSignals },
   //   { path: "/page2", component: Page2 },
   // add more routes...
 ];
@@ -50,7 +80,7 @@ router.afterEach((to, from) => {
     const lastReloadTime = localStorage.getItem('lastReloadTime');
     const currentTime = Date.now();
     
-    if (!lastReloadTime || currentTime - lastReloadTime > 10000) { // 5000 ms = 5 sec
+    if (!lastReloadTime || currentTime - lastReloadTime > 60000) { // 5000 ms = 5 sec
       localStorage.setItem('lastReloadTime', currentTime.toString());
       window.location.reload();
     }

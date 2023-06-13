@@ -220,6 +220,8 @@ setInterval(setRandomId, 2000);
 // Post all form elements to the database
 
 window.SendFormEngine = function (formId, callback) {
+
+
   let attempts = 0;
   const interval = setInterval(() => {
     const form = document.getElementById(formId);
@@ -235,6 +237,9 @@ window.SendFormEngine = function (formId, callback) {
       form.addEventListener("submit", function (e) {
         e.preventDefault();
 
+
+        console.log('Form submitted');
+
         const postRouteInput = form.elements["PostRoute"];
         const postRoute = postRouteInput ? postRouteInput.value : null;
 
@@ -243,33 +248,20 @@ window.SendFormEngine = function (formId, callback) {
           return;
         }
 
-        const data = {};
-        for (let element of form.elements) {
-          if (element.name && element.name !== "PostRoute") {
-            if (!data[element.name]) {
-              data[element.name] = element.value;
-            }
-          }
-        }
+        const formData = new FormData(form);
 
-        const emptyFields = Object.entries(data)
-          .filter(([key, value]) => !value)
-          .map(([key]) => key);
-
-        if (emptyFields.length) {
-          Swal.fire({
-            title: "Error!",
-            text: `The following fields are empty: ${emptyFields.join(", ")}`,
-            icon: "error",
-            confirmButtonText: "OK",
-          });
-          return;
+        for (let value of formData.values()) {
+          console.log(value); 
         }
 
         setCreatedAtValue(); // Call the setCreatedAtValue function here
 
         axios
-          .post(SERVER_URL + postRoute, data)
+          .post(SERVER_URL + postRoute, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })
           .then((response) => {
             if (response.data[0].status) {
               Swal.fire(
@@ -301,6 +293,7 @@ window.SendFormEngine = function (formId, callback) {
     attempts++;
   }, 400);
 };
+
 
 window.ButtonActions = function (selector, action, callback) {
   document.addEventListener("click", function (event) {
@@ -469,86 +462,7 @@ window.removeElementsByClass = (className) => {
 };
 
 // Insert all forms to the DB ,
-window.SendFormEngine = function (formId, callback) {
-  let attempts = 0;
-  const interval = setInterval(() => {
-    const form = document.getElementById(formId);
 
-    if (form || attempts >= 20) {
-      clearInterval(interval);
-
-      if (!form) {
-        // console.error("Form not found");
-        return;
-      }
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const postRouteInput = form.elements["PostRoute"];
-        const postRoute = postRouteInput ? postRouteInput.value : null;
-
-        if (!postRoute) {
-          console.error("PostRoute not found in form");
-          return;
-        }
-
-        const data = {};
-        for (let element of form.elements) {
-          if (element.name && element.name !== "PostRoute") {
-            if (!data[element.name]) {
-              data[element.name] = element.value;
-            }
-          }
-        }
-
-        const emptyFields = Object.entries(data)
-          .filter(([key, value]) => !value)
-          .map(([key]) => key);
-
-        if (emptyFields.length) {
-          Swal.fire({
-            title: "Error!",
-            text: `The following fields are empty: ${emptyFields.join(", ")}`,
-            icon: "error",
-            confirmButtonText: "OK",
-          });
-          return;
-        }
-
-        axios
-          .post(SERVER_URL + postRoute, data)
-          .then((response) => {
-            if (response.data[0].status) {
-              Swal.fire(
-                "Action Successful",
-                response.data[0].status,
-                "success"
-              );
-              if (callback) callback();
-            }
-          })
-          .catch((error) => {
-            if (error.response && error.response.data.errors) {
-              const validationErrors = Object.values(error.response.data.errors)
-                .flat()
-                .join("\n");
-              Swal.fire({
-                title: "Validation Error!",
-                text: validationErrors,
-                icon: "error",
-                confirmButtonText: "OK",
-              });
-            } else {
-              console.error(error);
-            }
-          });
-      });
-    }
-
-    attempts++;
-  }, 400);
-};
 
 window.setElementValueWhenAvailable = function (selector, value) {
   // Define a new observer
@@ -683,6 +597,11 @@ window.ClassBasedFetchSelect = function (
   }
 
   function removeDuplicates(selectElement) {
+    // If the selectElement is null or undefined, return immediately
+    if (!selectElement) {
+      return;
+    }
+  
     let optionValues = new Set();
     for (let i = 0; i < selectElement.options.length; i++) {
       const optionValue = selectElement.options[i].value;
@@ -694,6 +613,7 @@ window.ClassBasedFetchSelect = function (
       }
     }
   }
+  
 
   fetchData();
 };
