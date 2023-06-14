@@ -30,6 +30,8 @@ import EebsSignals from "./components/sys/Signals/EebsSignals.vue";
 // import EebsSignals from "./components/sys/Signals/EebsSignals.vue";
 import HotlineSignals from "./components/sys/Signals/HotlineSignals.vue";
 import ViewHotline from "./components/sys/Signals/ViewHotline.vue";
+import CebsSelectOps from "./components/sys/EbsOps/CebsSelectOps.vue";
+import EbsReportSignals from "./components/sys/EbsOps/EbsReportSignals.vue";
 // import HfebsSignals from "./components/sys/Signals/HfebsSignals.vue";
 // import Page2 from "./components/Page2.vue";
 // import other page components...
@@ -63,6 +65,8 @@ const routes = [
   { path: "/ViewEebsSignals", component: ViewEebsSignals },
   { path: "/HotlineSignals", component: HotlineSignals },
   { path: "/ViewHotline", component: ViewHotline },
+  { path: "/CebsSelectOps", component: CebsSelectOps },
+  { path: "/EbsReportSignals", component: EbsReportSignals },
   // { path: "/HfebsSignals", component: HfebsSignals },
   //   { path: "/page2", component: Page2 },
   // add more routes...

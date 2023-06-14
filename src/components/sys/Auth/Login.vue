@@ -102,9 +102,26 @@ export default {
                     password: this.password
                 }).then(response => {
                     if (response.status === 200) {
-                        // Dispatch the Vuex action
-                        this.setAuthToken(response.data.user);
-                        Swal.fire('Success!', 'User authenticated!', 'success');
+                        // Check if any key is null (exclude timestamp and email verification keys)
+                        const user = response.data.user;
+                        const keysToExclude = ["created_at", "updated_at", "email_verified_at"];
+                        let invalidKeys = [];
+                        for (let key in user) {
+                            if (!keysToExclude.includes(key) && user[key] === null) {
+                                // Convert the key to human readable form and add to the list
+                                let readableKey = key.replace(/([A-Z])/g, ' $1').trim(); // converts "WardName" to "Ward Name"
+                                invalidKeys.push(readableKey);
+                            }
+                        }
+                        if (invalidKeys.length > 0) {
+                            Swal.fire('Error!', `Invalid user data received! Missing fields: ${invalidKeys.join(", ")}`, 'error');
+                        } else {
+                            // Dispatch the Vuex action
+                            this.setAuthToken(response.data.user);
+
+                            console.log(response.data.user);
+                            Swal.fire('Success!', 'User authenticated!', 'success');
+                        }
                     }
                 }).catch(error => {
                     Swal.fire('Error!', 'Authentication failed!', 'error');
@@ -114,6 +131,7 @@ export default {
     }
 }
 </script>
+
 
 
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card-body mb-3 pb-3 pe-2 bg-light shadow-lg table-responsive">
+    <div class="card-body mb-3 pb-3 pe-2 bg-light  table-responsive container-fluid">
       <button
         type="button"
         data-bs-toggle="modal"

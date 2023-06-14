@@ -148,6 +148,7 @@ window.PopulateHealthFacilities();
 window.publicHealthSignals = [
   "Human Health Disease Outbreak",
   "Zoonotic Disease Outbreak",
+  "Animal Health",
   "Animal Health Issue",
   "Plant Health Problem",
   "Water Contamination",

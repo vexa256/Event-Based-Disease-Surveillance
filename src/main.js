@@ -1,5 +1,5 @@
-window.SERVER_URL = "http://172.27.34.24:8000/api/";
-window.ASSET_URL = "http://172.27.34.24:8000/";
+window.SERVER_URL = "http://172.21.159.237:8000/api/";
+window.ASSET_URL = "http://172.21.159.237:8000/";
 import "./globals";
 import { createApp } from "vue";
 import "./style.css";

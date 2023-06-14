@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="card-body mb-3 pb-3 pe-2 bg-light  table-responsive container-fluid">
-            <router-link to="/HfebsSignals">
+            <router-link to="/CebsSelectOps">
                 <button type="button" class="btn btn-sm float-end mt-2 mb-3 btn-danger ms-2">
                     <i class="fas fa-arrow-left"></i>
                     Back
@@ -20,24 +20,23 @@
                     <div class="card-body text-danger fw-bolder">Signal #{{ record.SignalNumber }}</div>
                 </div>
                 <div class="card-footer p-5 m-5 d-flex justify-content-between">
-                    <button class="btn btn-sm btn-dark" type="button" id="updateButton" data-bs-toggle="modal"
+                    <button class="btn btn-sm btn-danger" type="button" id="updateButton" data-bs-toggle="modal"
                         data-bs-target="#UpdateProvincesModal" :data-id="record.id" :data-tablename="tableName"
                         @click="updateRecord(record.id, tableName)">
-                        <i class="bi bi-pencil-fill"></i> Update
+                        <i class="fas fa-check"></i> Report Signal
                     </button>
-                    <button class="btn btn-sm btn-danger DeleteMe" type="button" :data-id="record.id"
-                        :data-tablename="tableName">
-                        <i class="bi bi-trash-fill"></i> Delete
-                    </button>
+                   
                 </div>
 
             </div>
         </div>
 
+
+
         <teleport to="body">
             <div v-if="lightbox.show" class="lightbox">
                 <div class="lightbox-content">
-                    <img :src="lightbox.image" alt="" @click="closeImage()">
+                    <img  :src="lightbox.image" alt="" @click="closeImage()">
                 </div>
             </div>
         </teleport>
@@ -118,17 +117,18 @@ export default {
         this.fetchRecords();
     },
     mounted() {
-        window.SetMyPageTitle("View HFEBS Signals");
+        window.SetMyPageTitle("View CEBS Signals");
         window.ButtonActions(".DeleteMe", "Delete", () => this.fetchRecords()); // Changed to fetchRecords as fetchAndDisplayData doesn't exist
 
         window.RemoveDisplayElements(this.ignoredColumns);
         window.removeElementsWithXIdClass();
 
 
-        SendFormEngine("ThisUpdateData", () => this.fetchRecords());
+        SendFormEngine("ThisUpdateData", () => this.fetchAndDisplayData());
 
     },
     methods: {
+
         showImage(image) {
             this.lightbox.image = image;
             this.lightbox.show = true;
@@ -140,7 +140,7 @@ export default {
         },
         async fetchRecords() {
             try {
-                const response = await axios.get(SERVER_URL + 'FetchMEBsSignals');
+                const response = await axios.get(SERVER_URL + 'FetchEbsSignals');
                 this.records = response.data.records;
             } catch (error) {
                 console.error(error);

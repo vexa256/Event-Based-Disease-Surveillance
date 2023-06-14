@@ -162,7 +162,7 @@ export default {
             {
               label: "CEBS",
               className: "mt-2 mb-2",
-              link: "/MgtProvinces",
+              link: "/CebsSelectOps",
             },
             {
               label: "HFEBS",

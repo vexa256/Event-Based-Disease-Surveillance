@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card-body mb-3 pb-3 pe-2 bg-light shadow-lg table-responsive">
+        <div class="card-body mb-3 pb-3 pe-2 bg-light  table-responsive container-fluid">
             <router-link to="/HfebsSignals">
                 <button type="button" class="btn btn-sm float-end mt-2 mb-3 btn-danger ms-2">
                     <i class="fas fa-arrow-left"></i>
