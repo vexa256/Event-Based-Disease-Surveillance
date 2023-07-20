@@ -29,3 +29,6 @@ export default createStore({
     isAppRootVisible: state => state.isAppRootVisible,
   }
 });
+
+
+console.log('UserID '+sessionStorage.getItem('UserID'));

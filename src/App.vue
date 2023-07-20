@@ -30,14 +30,15 @@ import Auth from "../src/components/sys/Auth/Login.vue";
               <Toolbar />
               <!--end::Toolbar-->
               <!--begin::Content-->
-              <div class="app-content flex-column-fluid" id="kt_app_content">
+              <div class="app-content flex-column-fluid" id="kt_app_content" style="height: 90%; overflow-y: scroll;">
                 <!--begin::Content container-->
-                <div
+                <div 
                   class="app-container container-fluid"
-                  id="kt_app_content_container mt-5 pt-2"
+                  id="kt_app_content_container"
+                  
                 >
                   <!--  DIV FOR SCRN ROUTER -->
-                  <div id="MYCONTENT">
+                  <div id="MYCONTENT" >
                     <router-view></router-view>
                   </div>
                   <!--  DIV FOR SCRN ROUTER -->
@@ -61,6 +62,27 @@ import Auth from "../src/components/sys/Auth/Login.vue";
   </div>
 </template>
 
+<style scoped>
+
+#MYCONTENT {
+  height: 100%;
+  overflow-y: auto;
+}
+
+html,
+body,
+#app,
+.WholeApp,
+.app-root,
+.app-page,
+.app-wrapper,
+.app-main,
+.d-flex {
+  height: 100%;
+}
+
+</style>
+
 <script>
 import { mapGetters } from 'vuex';
 
@@ -68,6 +90,10 @@ export default {
   computed: {
     ...mapGetters(['isAppRootVisible'])
   },
+  mounted() {
+  
+},
+
   watch: {
     isAppRootVisible(newValue, oldValue) {
       console.log(`isAppRootVisible changed from ${oldValue} to ${newValue}`);

@@ -1,7 +1,7 @@
 <template>
   <div>
     <MenuBlock
-      v-for="(block, index) in menuBlocks"
+      v-for="(block, index) in filteredMenuBlocks"
       :key="index"
       :title="block.title"
       :iconClass="block.iconClass"
@@ -13,6 +13,7 @@
 
 <script>
 import MenuBlock from "./MenuBlock.vue";
+import Swal from "sweetalert2";
 
 export default {
   name: "Sidebar",
@@ -21,7 +22,7 @@ export default {
   },
   data() {
     return {
-      menuBlocks: [
+   menuBlocks: [
         {
           title: "Country Structures",
           iconClass: "fas fa-flag-checkered fa-3x",
@@ -79,34 +80,18 @@ export default {
           iconClass: "fas fa-project-diagram fa-3x",
           submenuClass: "ADMNISTRATIVEUNITS",
           menuItems: [
-            { label: "Designations", className: "mt-2 mb-2", link: "/Designations", },
+            {
+              label: "Designations",
+              className: "mt-2 mb-2",
+              link: "/Designations",
+            },
 
-            { label: "CEBS Structures", className: "mt-2 mb-2", link: "/StructureCebs", },
             {
-              label: "HFEBS Structures",
+              label: "CEBS Structures",
               className: "mt-2 mb-2",
-              link: "/StructureFhebs",
+              link: "/StructureCebs",
             },
-            {
-              label: "VEBS Structures",
-              className: "mt-2 mb-2",
-              link: "/StructureVebs",
-            },
-            {
-              label: "MEBS Structures",
-              className: "mt-2 mb-2",
-              link: "/StructureMebs",
-            },
-            {
-              label: "Hot Line Structures",
-              className: "mt-2 mb-2",
-              link: "/StructureHotline",
-            },
-            {
-              label: "Environment EBS",
-              className: "mt-2 mb-2",
-              link: "/StructuresEebs",
-            },
+            
           ],
         },
 
@@ -126,32 +111,7 @@ export default {
               link: "/CebsSignals",
             },
 
-            {
-              label: "HFEBS Signals",
-              className: "mt-2 mb-2",
-              link: "/HfebsSignals",
-            },
-
-            {
-              label: "MEBS Signals",
-              className: "mt-2 mb-2",
-              link: "/MebsSignals",
-            },
-
-
-            {
-              label: "EEBS Signals",
-              className: "mt-2 mb-2",
-              link: "/EebsSignals",
-            },
-
-
-            {
-              label: "Hotline Signals",
-              className: "mt-2 mb-2",
-              link: "/HotlineSignals",
-            },
-
+           
           ],
         },
         {
@@ -165,99 +125,72 @@ export default {
               link: "/CebsSelectOps",
             },
             {
-              label: "HFEBS",
+              label: "Logout",
               className: "mt-2 mb-2",
-              link: "/MgtDistricts",
+              link: "/Logout",
             },
-            {
-              label: "VEBS",
-              className: "mt-2 mb-2",
-              link: "/MgtConstituencies",
-            },
-            {
-              label: "MEBS",
-              className: "mt-2 mb-2",
-              link: "/MgtConstituencies",
-            },
-            {
-              label: "Hot Line EBS",
-              className: "mt-2 mb-2",
-              link: "/MgtConstituencies",
-            },
-            {
-              label: "Environment EBS",
-              className: "mt-2 mb-2",
-              link: "/MgtConstituencies",
-            },
+            
           ],
         },
         {
-          title: "EBS Reports",
+          title: "CEBS Reports",
           iconClass: "fas fa-chart-line fa-3x",
-          submenuClass: "ADMNISTRATIVEUNITS",
+          submenuClass: "",
           menuItems: [
+           
             {
-              label: "CEBS",
+              label: "Reporting By District",
               className: "mt-2 mb-2",
-              link: "/MgtProvinces",
+              link: "/ReportingByDistrict",
             },
             {
-              label: "HFEBS",
+              label: "Time Analytics",
               className: "mt-2 mb-2",
-              link: "/MgtDistricts",
+              link: "/TimeAnalytics",
             },
             {
-              label: "VEBS",
+              label: "Risk Assessment Analytics",
               className: "mt-2 mb-2",
-              link: "/MgtConstituencies",
+              link: "/RaAnalytics",
             },
             {
-              label: "MEBS",
+              label: "Reported Vs Verified",
               className: "mt-2 mb-2",
-              link: "/MgtConstituencies",
+              link: "/ReportedVsVerified",
             },
             {
-              label: "Hot Line EBS",
+              label: "Reported Vs Discarded",
               className: "mt-2 mb-2",
-              link: "/MgtConstituencies",
+              link: "/ReportedVsDiscarded",
             },
             {
-              label: "Environment EBS",
+              label: "Reported Vs Unverified",
               className: "mt-2 mb-2",
-              link: "/MgtConstituencies",
+              link: "/ReportedVsUnverified",
             },
-          ],
-        },
-        {
-          title: "Settings",
-          iconClass: "fas fa-user-cog fa-3x",
-          submenuClass: "ADMNISTRATIVEUNITS",
-          menuItems: [
 
             {
-              label: "User Accounts",
+              label: "System Data Report",
               className: "mt-2 mb-2",
-              link: "/MgtDistricts",
+              link: "/DataReport",
             },
-            {
-              label: "Admins Accounts",
-              className: "mt-2 mb-2",
-              link: "/MgtDistricts",
-            },
-            {
-              label: "Update Account",
-              className: "mt-2 mb-2",
-              link: "/MgtProvinces",
-            },
+          ],
+        },
+        {
+          title: "User Account",
+          iconClass: "fas fa-user-cog fa-3x",
+          submenuClass: "SUPERADMINPREV",
+          menuItems: [
+            
             {
               label: "Logout",
               className: "mt-2 mb-2",
-              link: "/MgtDistricts",
+              link: "/Logout",
             },
             {
               label: "Training Mode",
               className: "mt-2 mb-2",
-              link: "/MgtConstituencies",
+              link: "#",
             },
           ],
         },
@@ -265,6 +198,25 @@ export default {
         // other blocks...
       ],
     };
+  },
+  computed: {
+    filteredMenuBlocks() {
+      const checkRole = "National Level Oversight";
+      const currentRole = sessionStorage.getItem("CurrentLoggedInUserRole");
+
+      console.log('Role'+sessionStorage.getItem("CurrentLoggedInUserRole"));
+      if (currentRole === checkRole) {
+        return this.menuBlocks;
+      } else {
+        return this.menuBlocks.filter(block => block.title === "EBS Operations");
+      }
+    },
+  },
+  mounted() {
+    // your code...
+  },
+  methods: {
+    // your code...
   },
 };
 </script>

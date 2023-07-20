@@ -104,7 +104,7 @@
               <div class="container-fluid">
                 <div id="UpdateProvinceForm">
                   <input type="text" name="PostRoute" value="MassUpdate" class="d-none" />
-                  <input type="text" name="TableName" value="provinces" class="d-none" />
+                  <input type="text" name="TableName" value="ebs_signal_categories" class="d-none" />
                   <input type="text" class="UpdateRecordID d-none" name="id" value="" />
                   <div id="UpdateModalContent"></div>
                 </div>

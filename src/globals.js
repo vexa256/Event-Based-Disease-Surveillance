@@ -230,7 +230,7 @@ window.SendFormEngine = function (formId, callback) {
       clearInterval(interval);
 
       if (!form) {
-        console.error("Form not found");
+        console.log("Form not found attempts >= 20, This is not Fatal");
         return;
       }
 
@@ -650,3 +650,6 @@ window.RemoveDisplayElements = (ignoredColumns) => {
 
   observer.observe(document.body, config);
 };
+
+
+

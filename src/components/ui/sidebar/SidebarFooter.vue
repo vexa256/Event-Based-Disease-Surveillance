@@ -9,15 +9,16 @@
         data-bs-dismiss-="click"
         data-bs-toggle="tooltip"
         data-bs-trigger="hover"
-        href="#"
+        href="/"
         title="Get self paced training materials on how to use this tool"
       >
-        <span class="btn-label">
-          User Guide
+    
+        <span class="btn-label refreshApp">
+        Refresh
         </span>
-        <!--begin::Svg Icon | path: icons/duotune/general/gen005.svg-->
+        <!--begin::Svg Icon | path: icons/duotune/general/gen005.png-->
         <span class="svg-icon btn-icon svg-icon-2 m-0">
-          <img src="assets/svgs/svg_94.svg" />
+          <img src="../../../assets/svgsl/svg_94.svg" />
         </span>
         <!--end::Svg Icon-->
       </a>
@@ -27,5 +28,8 @@
 <script>
 export default {
   name: "SidebarFooter",
+
+
+
 };
 </script>

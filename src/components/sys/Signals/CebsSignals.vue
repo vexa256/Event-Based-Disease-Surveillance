@@ -54,10 +54,10 @@ export default {
             provinces: [],
             EbsSignalCategoryID: null,
             tableName: "ebs_signals",
-            excludedColumns: ["created_at", "updated_at", "EbsSignalCategoryID", 'EbsType', 'SignalID', , 'DisplayPicture'],
+            excludedColumns: ["created_at", "updated_at", "EbsSignalCategoryID", 'EbsType', 'SignalID', , 'DisplayPicture', 'ReportID'],
             records: [],
             titleColumnName: "EbsSignalCategory",
-            ignoredColumns: ["created_at", "updated_at", "EbsSignalCategoryID", 'EbsType', 'SignalID', 'DisplayPicture'],
+            ignoredColumns: ["created_at", "updated_at", "EbsSignalCategoryID", 'EbsType', 'SignalID', 'DisplayPicture', 'ReportID'],
             SERVER_URL: window.SERVER_URL,
         };
     },
