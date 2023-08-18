@@ -1,5 +1,5 @@
-window.SERVER_URL = "https://ecsa0.sytes.net/api/";
-window.ASSET_URL = "https://ecsa0.sytes.net/";
+window.SERVER_URL = "http://172.20.111.209:8000/api/";
+window.ASSET_URL = "http://172.20.111.209:8000/";
 import "./globals";
 import { createApp } from "vue";
 import "./style.css";
