@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card-body mb-3 pb-3 pe-2 bg-light  table-responsive container-fluid">
+    <div class="card-body mb-3 pb-3 pe-2 bg-light table-responsive container-fluid">
       <button
         type="button"
         data-bs-toggle="modal"
@@ -17,7 +17,7 @@
         <input type="text" name="PostRoute" value="MassInsert" class="d-none" />
         <input type="text" name="TableName" value="provinces" class="d-none" />
         <input type="text" name="created_at" value="" class="d-none" />
-                  <input type="text" name="ProvinceID" class="randomid d-none" />
+        <input type="text" name="ProvinceID" class="randomid d-none" />
       </form>
     </div>
     <!-- mODAL VEW DATA  -->
@@ -59,15 +59,10 @@
                         :aria-controls="'collapse' + index"
                       >
                         <h5 class="mb-1 text-danger fw-bolder">
-                          <i
-                            class="me-2 fas fa-circle-notch text-danger me-2"
-                          ></i>
+                          <i class="me-2 fas fa-circle-notch text-danger me-2"></i>
                           {{ record[titleColumnName] }}
                         </h5>
-                        <button
-                          class="btn btn-link text-secondary"
-                          type="button"
-                        >
+                        <button class="btn btn-link text-secondary" type="button">
                           <i class="fas fa-chevron-down"></i>
                         </button>
                       </div>
@@ -91,9 +86,7 @@
                                 :class="`x_${key}`"
                               >
                                 <strong>{{ formatColumnName(key) }}</strong>
-                                <span class="fw-bold text-primary">{{
-                                  value
-                                }}</span>
+                                <span class="fw-bold text-primary">{{ value }}</span>
                               </div>
                             </li>
                           </ul>
@@ -127,11 +120,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-danger"
-              data-bs-dismiss="modal"
-            >
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
               Close
             </button>
           </div>
@@ -153,9 +142,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalTitleId">
-              Update the selected record
-            </h5>
+            <h5 class="modal-title" id="modalTitleId">Update the selected record</h5>
             <button
               type="button"
               class="btn-close"
@@ -167,41 +154,18 @@
             <div class="modal-body">
               <div class="container-fluid">
                 <div id="UpdateProvinceForm">
-                  <input
-                    type="text"
-                    name="PostRoute"
-                    value="MassUpdate"
-                    class="d-none"
-                  />
-                  <input
-                    type="text"
-                    name="TableName"
-                    value="provinces"
-                    class="d-none"
-                  />
-                  <input
-                    type="text"
-                    class="UpdateRecordID d-none"
-                    name="id"
-                    value=""
-                  />
+                  <input type="text" name="PostRoute" value="MassUpdate" class="d-none" />
+                  <input type="text" name="TableName" value="provinces" class="d-none" />
+                  <input type="text" class="UpdateRecordID d-none" name="id" value="" />
                   <div id="UpdateModalContent"></div>
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Close
               </button>
-              <button
-                data-bs-dismiss="modal"
-                type="submit"
-                class="btn btn-primary"
-              >
+              <button data-bs-dismiss="modal" type="submit" class="btn btn-primary">
                 Save Changes
               </button>
             </div>
@@ -236,16 +200,8 @@ export default {
 
     window.SetMyPageTitle("Create and Manage Provinces");
 
-    window.ButtonActions(".DeleteMe", "Delete", () =>
-      this.fetchAndDisplayData()
-    );
-    window.FormEngine(
-      this.tableName,
-      this.excludedColumns,
-      "#MgtProvinces",
-      12,
-      12
-    );
+    window.ButtonActions(".DeleteMe", "Delete", () => this.fetchAndDisplayData());
+    window.FormEngine(this.tableName, this.excludedColumns, "#MgtProvinces", 12, 12);
     setRandomId();
     setCreatedAtValue();
     SendFormEngine("AddProvince", () => this.fetchAndDisplayData());
